@@ -124,11 +124,11 @@ static void task_watchdog_create(void)
 	vWDTinit();
 	
 	xReturned = xTaskCreate(task_watchdog,
-	"Watchdog",
-	TASK_WDT_STACK_SIZE,
-	NULL,
-	TASK_WDT_PRIORITY,
-	&xCreatedWatchdogTask);
+							"Watchdog",
+							TASK_WDT_STACK_SIZE,
+							NULL,
+							TASK_WDT_PRIORITY,
+							&xCreatedWatchdogTask);
 	
 	if(xReturned != pdPASS)
 	{
