@@ -1,5 +1,5 @@
 format_version: '2'
-name: RTOS demo
+name: HelloDott
 versions:
   api: '1.0'
   backend: 1.5.122
@@ -12,14 +12,12 @@ board:
   identifier: SAME54XplainedPro
   device: SAME54P20A-AU
 details: null
-application:
-  definition: 'Atmel:Application_Examples:0.0.1::Application:RTOS_demo:'
-  configuration: {}
+application: null
 middlewares:
   FREERTOS_V1000_0:
     user_label: FREERTOS_V1000_0
     configuration:
-      freertos_advanced: true
+      freertos_advanced: false
       freertos_check_for_stack_overflow: false
       freertos_etaskgetstate: false
       freertos_generate_run_time_stats: false
@@ -57,9 +55,9 @@ middlewares:
       freertos_xtaskgetcurrenttaskhandle: false
       freertos_xtaskgetidletaskhandle: false
       freertos_xtimerpendfunctioncall: false
-    definition: Atmel:RTOS1000:0.0.1::FreeRTOS_v1000_MemMang_2
+    definition: Atmel:RTOS1000:0.0.1::FreeRTOS_v1000_MemMang_1
     functionality: FreeRTOS_v10.0.0
-    api: RTOS:FreeRTOSv1000:MemMang_2
+    api: RTOS:FreeRTOSv1000:MemMang_1
     dependencies: {}
 drivers:
   CMCC:
@@ -637,57 +635,57 @@ drivers:
       gclk_arch_gen_0_oe: false
       gclk_arch_gen_0_oov: false
       gclk_arch_gen_0_runstdby: false
-      gclk_arch_gen_10_enable: true
+      gclk_arch_gen_10_enable: false
       gclk_arch_gen_10_idc: false
       gclk_arch_gen_10_oe: false
       gclk_arch_gen_10_oov: false
       gclk_arch_gen_10_runstdby: false
-      gclk_arch_gen_11_enable: true
+      gclk_arch_gen_11_enable: false
       gclk_arch_gen_11_idc: false
       gclk_arch_gen_11_oe: false
       gclk_arch_gen_11_oov: false
       gclk_arch_gen_11_runstdby: false
-      gclk_arch_gen_1_enable: true
+      gclk_arch_gen_1_enable: false
       gclk_arch_gen_1_idc: false
       gclk_arch_gen_1_oe: false
       gclk_arch_gen_1_oov: false
       gclk_arch_gen_1_runstdby: false
-      gclk_arch_gen_2_enable: true
+      gclk_arch_gen_2_enable: false
       gclk_arch_gen_2_idc: false
       gclk_arch_gen_2_oe: false
       gclk_arch_gen_2_oov: false
       gclk_arch_gen_2_runstdby: false
-      gclk_arch_gen_3_enable: true
+      gclk_arch_gen_3_enable: false
       gclk_arch_gen_3_idc: false
       gclk_arch_gen_3_oe: false
       gclk_arch_gen_3_oov: false
       gclk_arch_gen_3_runstdby: false
-      gclk_arch_gen_4_enable: true
+      gclk_arch_gen_4_enable: false
       gclk_arch_gen_4_idc: false
       gclk_arch_gen_4_oe: false
       gclk_arch_gen_4_oov: false
       gclk_arch_gen_4_runstdby: false
-      gclk_arch_gen_5_enable: true
+      gclk_arch_gen_5_enable: false
       gclk_arch_gen_5_idc: false
       gclk_arch_gen_5_oe: false
       gclk_arch_gen_5_oov: false
       gclk_arch_gen_5_runstdby: false
-      gclk_arch_gen_6_enable: true
+      gclk_arch_gen_6_enable: false
       gclk_arch_gen_6_idc: false
       gclk_arch_gen_6_oe: false
       gclk_arch_gen_6_oov: false
       gclk_arch_gen_6_runstdby: false
-      gclk_arch_gen_7_enable: true
+      gclk_arch_gen_7_enable: false
       gclk_arch_gen_7_idc: false
       gclk_arch_gen_7_oe: false
       gclk_arch_gen_7_oov: false
       gclk_arch_gen_7_runstdby: false
-      gclk_arch_gen_8_enable: true
+      gclk_arch_gen_8_enable: false
       gclk_arch_gen_8_idc: false
       gclk_arch_gen_8_oe: false
       gclk_arch_gen_8_oov: false
       gclk_arch_gen_8_runstdby: false
-      gclk_arch_gen_9_enable: true
+      gclk_arch_gen_9_enable: false
       gclk_arch_gen_9_idc: false
       gclk_arch_gen_9_oe: false
       gclk_arch_gen_9_oov: false
@@ -697,37 +695,37 @@ drivers:
       gclk_gen_0_oscillator: External Crystal Oscillator 8-48MHz (XOSC1)
       gclk_gen_10_div: 1
       gclk_gen_10_div_sel: false
-      gclk_gen_10_oscillator: External Crystal Oscillator 8-48MHz (XOSC0)
+      gclk_gen_10_oscillator: External Crystal Oscillator 8-48MHz (XOSC1)
       gclk_gen_11_div: 1
       gclk_gen_11_div_sel: false
-      gclk_gen_11_oscillator: External Crystal Oscillator 8-48MHz (XOSC0)
+      gclk_gen_11_oscillator: External Crystal Oscillator 8-48MHz (XOSC1)
       gclk_gen_1_div: 1
       gclk_gen_1_div_sel: false
-      gclk_gen_1_oscillator: External Crystal Oscillator 8-48MHz (XOSC0)
+      gclk_gen_1_oscillator: Digital Frequency Locked Loop (DFLL48M)
       gclk_gen_2_div: 1
       gclk_gen_2_div_sel: true
-      gclk_gen_2_oscillator: External Crystal Oscillator 8-48MHz (XOSC0)
+      gclk_gen_2_oscillator: External Crystal Oscillator 8-48MHz (XOSC1)
       gclk_gen_3_div: 1
       gclk_gen_3_div_sel: false
       gclk_gen_3_oscillator: 32kHz External Crystal Oscillator (XOSC32K)
       gclk_gen_4_div: 1
       gclk_gen_4_div_sel: false
-      gclk_gen_4_oscillator: External Crystal Oscillator 8-48MHz (XOSC0)
+      gclk_gen_4_oscillator: External Crystal Oscillator 8-48MHz (XOSC1)
       gclk_gen_5_div: 1
       gclk_gen_5_div_sel: false
-      gclk_gen_5_oscillator: External Crystal Oscillator 8-48MHz (XOSC0)
+      gclk_gen_5_oscillator: External Crystal Oscillator 8-48MHz (XOSC1)
       gclk_gen_6_div: 1
       gclk_gen_6_div_sel: false
-      gclk_gen_6_oscillator: External Crystal Oscillator 8-48MHz (XOSC0)
+      gclk_gen_6_oscillator: External Crystal Oscillator 8-48MHz (XOSC1)
       gclk_gen_7_div: 1
       gclk_gen_7_div_sel: false
-      gclk_gen_7_oscillator: External Crystal Oscillator 8-48MHz (XOSC0)
+      gclk_gen_7_oscillator: External Crystal Oscillator 8-48MHz (XOSC1)
       gclk_gen_8_div: 1
       gclk_gen_8_div_sel: false
-      gclk_gen_8_oscillator: External Crystal Oscillator 8-48MHz (XOSC0)
+      gclk_gen_8_oscillator: External Crystal Oscillator 8-48MHz (XOSC1)
       gclk_gen_9_div: 1
       gclk_gen_9_div_sel: false
-      gclk_gen_9_oscillator: External Crystal Oscillator 8-48MHz (XOSC0)
+      gclk_gen_9_oscillator: External Crystal Oscillator 8-48MHz (XOSC1)
     optional_signals: []
     variant: null
     clocks:
@@ -766,7 +764,7 @@ drivers:
       enable_xosc32k: false
       osculp32k_calib: 0
       osculp32k_calib_enable: false
-      rtc_1khz_selection: true
+      rtc_1khz_selection: false
       rtc_source_oscillator: 32kHz Ultra Low Power Internal Oscillator (OSCULP32K)
       xosc32k_arch_cfden: false
       xosc32k_arch_cfdeo: false
@@ -778,7 +776,7 @@ drivers:
       xosc32k_arch_runstdby: false
       xosc32k_arch_startup: 62592us
       xosc32k_arch_swben: false
-      xosc32k_arch_xtalen: false
+      xosc32k_arch_xtalen: true
     optional_signals: []
     variant: null
     clocks:
@@ -936,11 +934,11 @@ drivers:
     variant: null
     clocks:
       domain_group: null
-  EDBG_COM:
-    user_label: EDBG_COM
-    definition: Atmel:SAME54_Drivers:0.0.1::SAME54P20A-AU::SERCOM2::driver_config_definition::UART::HAL:Driver:USART.RTOS.Beta
+  USART_0:
+    user_label: USART_0
+    definition: Atmel:SAME54_Drivers:0.0.1::SAME54P20A-AU::SERCOM0::driver_config_definition::UART::HAL:Driver:USART.Sync
     functionality: USART
-    api: HAL:Driver:USART_RTOS_Beta
+    api: HAL:Driver:USART_Sync
     configuration:
       usart_advanced: false
       usart_arch_clock_mode: USART with internal clock
@@ -965,11 +963,11 @@ drivers:
     variant:
       specification: TXPO=0, RXPO=1, CMODE=0
       required_signals:
-      - name: SERCOM2/PAD/0
-        pad: PB25
+      - name: SERCOM0/PAD/0
+        pad: PA04
         label: TX
-      - name: SERCOM2/PAD/1
-        pad: PB24
+      - name: SERCOM0/PAD/1
+        pad: PA05
         label: RX
     clocks:
       domain_group:
@@ -985,23 +983,30 @@ drivers:
         configuration:
           core_gclk_selection: Generic clock generator 0
           slow_gclk_selection: Generic clock generator 3
+  WDT_0:
+    user_label: WDT_0
+    definition: Atmel:SAME54_Drivers:0.0.1::SAME54P20A-AU::WDT::driver_config_definition::WDT::HAL:Driver:WDT
+    functionality: WDT
+    api: HAL:Driver:WDT
+    configuration:
+      wdt_arch_per: 8 clock cycles
+      wdt_arch_window: 8 clock cycles
+      wdt_arch_window_en: false
+    optional_signals: []
+    variant: null
+    clocks:
+      domain_group: null
 pads:
-  LED0:
-    name: PC18
-    definition: Atmel:SAME54_Drivers:0.0.1::SAME54P20A-AU::pad::PC18
-    mode: Digital output
-    user_label: LED0
-    configuration: {}
-  PB24:
-    name: PB24
-    definition: Atmel:SAME54_Drivers:0.0.1::SAME54P20A-AU::pad::PB24
+  PA04:
+    name: PA04
+    definition: Atmel:SAME54_Drivers:0.0.1::SAME54P20A-AU::pad::PA04
     mode: Peripheral IO
-    user_label: PB24
-    configuration: {}
-  PB25:
-    name: PB25
-    definition: Atmel:SAME54_Drivers:0.0.1::SAME54P20A-AU::pad::PB25
+    user_label: PA04
+    configuration: null
+  PA05:
+    name: PA05
+    definition: Atmel:SAME54_Drivers:0.0.1::SAME54P20A-AU::pad::PA05
     mode: Peripheral IO
-    user_label: PB25
-    configuration: {}
+    user_label: PA05
+    configuration: null
 toolchain_options: []

@@ -61,7 +61,7 @@ void assert_triggered(const char *file, uint32_t line);
 // <e> Advanced
 // <id> freertos_advanced
 #ifndef FREERTOS_ADVANCED_CONFIG
-#define FREERTOS_ADVANCED_CONFIG 1
+#define FREERTOS_ADVANCED_CONFIG 0
 #endif
 
 // <q> Enable preemption

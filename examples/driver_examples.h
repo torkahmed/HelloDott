@@ -12,7 +12,9 @@
 extern "C" {
 #endif
 
-void EDBG_COM_example_task(void *p);
+void USART_0_example(void);
+
+void WDT_0_example(void);
 
 #ifdef __cplusplus
 }

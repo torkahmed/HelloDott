@@ -1,65 +1,27 @@
 /**
  * \file
  *
- * \brief Application implement
+ * \brief Main
  *
- * Copyright (c) 2015-2018 Microchip Technology Inc. and its subsidiaries.
- *
- * \asf_license_start
- *
- * \page License
- *
- * Subject to your compliance with these terms, you may use Microchip
- * software and any derivatives exclusively with Microchip products.
- * It is your responsibility to comply with third party license terms applicable
- * to your use of third party software (including open source software) that
- * may accompany Microchip software.
- *
- * THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS".  NO WARRANTIES,
- * WHETHER EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE,
- * INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY,
- * AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT WILL MICROCHIP BE
- * LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, INCIDENTAL OR CONSEQUENTIAL
- * LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND WHATSOEVER RELATED TO THE
- * SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS BEEN ADVISED OF THE
- * POSSIBILITY OR THE DAMAGES ARE FORESEEABLE.  TO THE FULLEST EXTENT
- * ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN ANY WAY
- * RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
- * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
- *
- * \asf_license_stop
- *
- */
-/*
- * Support and FAQ: visit <a href="https://www.microchip.com/support/">Microchip Support</a>
  */
 
 /*
  * FEATURE SWITCHES
  */
-#define ENABLE_WDT                 (1)
+#define ENABLE_WDT                 (ON)
 
 /*
  * INCLUDES
  */
 #include "atmel_start.h"
-#include "atmel_start_pins.h"
-
-#include "hal_io.h"
-#include "hal_rtos.h"
-
 #include "FreeRTOS.h"
 #include "task.h"
 
-#if (ENABLE_WDT == 1)
+#include "sercom.h"
+
+#if (ENABLE_WDT == ON)
   #include "watchdog.h"
 #endif
-
-#include <stdio.h>
-#include <stdarg.h>
-#include <string.h>
-
-#include <time.h>
 
 /*
  * MACROS
@@ -68,8 +30,8 @@
 #define TASK_HD_PRIORITY           (tskIDLE_PRIORITY + 3)
 #define TASK_HD_PERIODICITY_MS     (1000U)
 
-#if (ENABLE_WDT == 1)
-  /* TODO: Decide if watchdog task needs to have less priority in order to detect infinite loops in high priority tasks, however, this contradicts with the rate monotonic scheduling model */
+#if (ENABLE_WDT == ON)
+  /* watchdog task needs to have less priority in order to detect infinite loops in high priority tasks */
   #define TASK_WDT_STACK_SIZE        (256 / sizeof(portSTACK_TYPE))
   #define TASK_WDT_PRIORITY          (tskIDLE_PRIORITY + 2)
   #define TASK_WDT_PERIODICITY_MS    WATCHDOG_REFRESH_RATE
@@ -80,19 +42,18 @@
  */
 static TaskHandle_t      xCreatedHelloDottTask;
 
-#if (ENABLE_WDT == 1)
+#if (ENABLE_WDT == ON)
 static TaskHandle_t      xCreatedWatchdogTask;
 #endif
 
 /*
- * FUNCTION DECLARATIONS
+ * LOCAL FUNCTION DECLARATIONS
  */
-static void str_write(const char *s);
 
 static void task_helloDott_create(void);
 static void task_helloDott(void *p);
 
-#if (ENABLE_WDT == 1)
+#if (ENABLE_WDT == ON)
 static void task_watchdog_create(void);
 static void task_watchdog(void *p);
 #endif
@@ -100,18 +61,10 @@ static void task_watchdog(void *p);
 static void tasks_run(void);
 
 /*
- * FUNCTION DEFINITIONS
+ * LOCAL FUNCTION DEFINITIONS
  */
 
-/**
- * \brief Write string to console
- */
-static void str_write(const char *s)
-{
-	io_write(&EDBG_COM.io, (const uint8_t *)s, strlen(s));
-}
-
-#if (ENABLE_WDT == 1)
+#if (ENABLE_WDT == ON)
 
 /** 
  * \brief Create the task Watchdog
@@ -198,7 +151,7 @@ static void task_helloDott(void *p)
 	for (;;) 
 	{
 		/* ACTIVITY LIST IN TASK HELLODOTT! */
-		str_write("Hello Dott!\r\n");
+		WriteToConsole("Hello Dott!\r\n");
 		
 		/* END ACTIVITIES */
 		
@@ -214,15 +167,23 @@ static void tasks_run(void)
 	vTaskStartScheduler();
 }
 
+
+/*
+ * MAIN
+ */
+
 int main(void)
 {
 	/* Init Peripherals */
 	atmel_start_init();
+	
+	/* Init Sercom */
+	InitSercom();
 
 	/* Init tasks */
 	task_helloDott_create();
 
-#if (ENABLE_WDT == 1)
+#if (ENABLE_WDT == ON)
 	task_watchdog_create();
 #endif
 	
